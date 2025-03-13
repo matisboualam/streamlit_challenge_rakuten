@@ -1,0 +1,12 @@
+tensorflow==2.18.0
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+nltk
+gensim
+beautifulsoup4
+ipython
+dvc
+dagshub
