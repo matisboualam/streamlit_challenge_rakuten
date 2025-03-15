@@ -4,3 +4,4 @@ models/
 data/
 __pycache__/
 /data
+/models
