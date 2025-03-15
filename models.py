@@ -12,7 +12,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import subprocess
 
-access_key_id = st.secrets["dvc"]["access_key_id"]
+access_key_id = st.secrets["dvc"]["access_id"]
 
 subprocess.run([
     'dvc', 'remote', 'modify', 'origin', '--local', 
