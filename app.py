@@ -2,26 +2,11 @@ import streamlit as st
 import pandas as pd
 import random
 import os 
+from models import Model
+
 
 print("Current working directory:", os.getcwd())
 print("Files in the current directory:", os.listdir(os.getcwd()))
-
-from models import Model
-import subprocess
-
-access_key_id = st.secrets["dvc"]["access_key_id"]
-
-subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', '--local', 
-    f'access_key_id={access_key_id}'
-])
-
-subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', '--local', 
-    f'secret_access_key={access_key_id}'
-])
-
-subprocess.run(['dvc', 'pull'])
 
 st.set_page_config(page_title="Rakuten Multimodal Classifier",
                    page_icon="gallery/rakuten.svg",
