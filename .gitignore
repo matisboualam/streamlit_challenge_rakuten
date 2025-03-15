@@ -3,3 +3,4 @@ streamlit-env/
 models/
 data/
 __pycache__/
+/data
