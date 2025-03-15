@@ -1,6 +1,5 @@
 *.zip
 streamlit-env/
-gallery/
 models/
 data/
 __pycache__/
