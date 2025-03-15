@@ -1,6 +1,11 @@
 import streamlit as st
 import pandas as pd
 import random
+import os 
+
+print("Current working directory:", os.getcwd())
+print("Files in the current directory:", os.listdir(os.getcwd()))
+
 from models import Model
 import subprocess
 
