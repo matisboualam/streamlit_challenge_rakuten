@@ -17,13 +17,13 @@ access_key_id = st.secrets["dvc"]["access_id"]
 subprocess.run(['dvc', 'remote', 'list'])
 
 subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', 
-    f'access_key_id={access_key_id}'
+    'dvc', 'remote', 'modify', 'origin', '--local', 
+    'access_key_id', f'{access_key_id}'
 ])
 
 subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', 
-    f'secret_access_key={access_key_id}'
+    'dvc', 'remote', 'modify', 'origin', '--local', 
+    'secret_access_key', f'{access_key_id}'
 ])
 
 subprocess.run(['dvc', 'pull'])
