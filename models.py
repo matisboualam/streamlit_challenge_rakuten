@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import subprocess
 
 access_key_id = st.secrets["dvc"]["access_id"]
+print(access_key_id)
 
 subprocess.run(['dvc', 'remote', 'list'])
 
@@ -27,7 +28,6 @@ subprocess.run([
 ])
 
 subprocess.run(['dvc', 'pull'])
-
 
 
 word2vec_model = gensim.models.KeyedVectors.load('models/gensim/fasttext-wiki-news-subwords-300')
