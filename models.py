@@ -14,19 +14,14 @@ import subprocess
 
 access_key_id = st.secrets["dvc"]["access_id"]
 
-subprocess.run(['dvc', 'remote', 'add', 'origin', 's3://dvc'])
-subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', 
-    'endpointurl', 'https://dagshub.com/matisboualam/streamlit_challenge_rakuten.s3'
-])
 
 subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', '--local', 
+    'dvc', 'remote', 'modify', '--force', 'origin', 
     f'access_key_id={access_key_id}'
 ])
 
 subprocess.run([
-    'dvc', 'remote', 'modify', 'origin', '--local', 
+    'dvc', 'remote', 'modify', '--force', 'origin', 
     f'secret_access_key={access_key_id}'
 ])
 
