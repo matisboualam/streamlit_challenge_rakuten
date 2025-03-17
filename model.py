@@ -10,7 +10,6 @@ import gensim
 import json
 import streamlit as st
 import matplotlib.pyplot as plt
-import subprocess
 
 word2vec_model = gensim.models.KeyedVectors.load('models/gensim/fasttext-wiki-news-subwords-300')
 stop_words = set(nltk.corpus.stopwords.words('french'))

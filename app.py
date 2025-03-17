@@ -1,7 +1,14 @@
 import streamlit as st
+
+
+st.set_page_config(page_title="Rakuten Multimodal Classifier",
+                   page_icon="gallery/rakuten.svg",
+                   layout="wide")
+
 import pandas as pd
 import random
 import os 
+
 from setup_env import setup_environment
 setup_environment()
 
@@ -10,9 +17,6 @@ from model import Model
 print("Current working directory:", os.getcwd())
 print("Files in the current directory:", os.listdir(os.getcwd()))
 
-st.set_page_config(page_title="Rakuten Multimodal Classifier",
-                   page_icon="gallery/rakuten.svg",
-                   layout="wide")
 
 @st.cache_data
 def load_dataset():
