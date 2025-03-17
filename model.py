@@ -44,18 +44,61 @@ def clean_text(text):
     text = re.sub(r'\W+', ' ', text)  # Remove punctuation
     return text.lower()
 
+
+# Cache Word2Vec Model
+@st.cache_data
+def load_word2vec_model():
+    return gensim.models.KeyedVectors.load('models/gensim/fasttext-wiki-news-subwords-300')
+
+# Cache stop words
+@st.cache_data
+def get_stop_words():
+    return set(nltk.corpus.stopwords.words('french'))
+
+# Cache lemmatizer
+@st.cache_data
+def get_lemmatizer():
+    return nltk.stem.WordNetLemmatizer()
+
+# Cache Keras models
+@st.cache_data
+def load_text_model():
+    return load_model('models/text_model.keras')
+
+@st.cache_data
+def load_image_model():
+    return load_model('models/image_model_MobileNet.keras')
+
+# Cache Accuracy DataFrames
+@st.cache_data
+def load_im_accuracy():
+    return pd.read_csv('data/accuracy/im_accuracy_MobileNet.csv', index_col=0)
+
+@st.cache_data
+def load_txt_accuracy():
+    return pd.read_csv('data/accuracy/txt_accuracy.csv', index_col=0)
+
+# Cache catalog
+@st.cache_data
+def load_catalog():
+    return json.load(open('models/catalog.json'))
+
+# Now, use these cached functions in your Model class
 class Model:
     def __init__(self):
-        self.text_model = load_model('models/text_model.keras')
-        self.image_model = load_model('models/image_model_MobileNet.keras')
-        self.im_acc = pd.read_csv('data/accuracy/im_accuracy_MobileNet.csv', index_col=0)
-        self.txt_acc = pd.read_csv('data/accuracy/txt_accuracy.csv', index_col=0)
-        self.catalog = json.load(open('models/catalog.json'))
+        self.word2vec_model = load_word2vec_model()
+        self.stop_words = get_stop_words()
+        self.lemmatizer = get_lemmatizer()
+        self.text_model = load_text_model()
+        self.image_model = load_image_model()
+        self.im_acc = load_im_accuracy()
+        self.txt_acc = load_txt_accuracy()
+        self.catalog = load_catalog()
     
     def preprocess_text_data(self, text_data):
         text_input = preprocess_text(text_data)
         text_input = clean_text(text_input)
-        text_input = np.array([get_mean_vector(word2vec_model, text_input)])
+        text_input = np.array([get_mean_vector(self.word2vec_model, text_input)])
         return text_input
 
     def preprocess_image(self, image_path, target_size=(224, 224)):
@@ -188,4 +231,3 @@ class Model:
         with col2:
             with st.expander("📊 **Ponderated Sum Vizualization**", expanded=True):
                 st.pyplot(fig, use_container_width=True) 
-        

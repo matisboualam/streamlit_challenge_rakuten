@@ -17,6 +17,7 @@ from model import Model
 print("Current working directory:", os.getcwd())
 print("Files in the current directory:", os.listdir(os.getcwd()))
 
+@st.cache_data
 def load_dataset():
     return pd.read_csv('data/dataset.csv')
 
@@ -97,7 +98,7 @@ def demo():
 
     st.divider()
     with st.expander("**Dataset Content**"):
-        st.dataframe(dataset, use_container_width=True, height=200)
+        st.dataframe(dataset[0:50].sample(frac=1).reset_index(drop=True), use_container_width=True, height=200)
 
 # Initialiser les variables dans st.session_state si elles ne sont pas déjà présentes
 if 'id_product' not in st.session_state:
