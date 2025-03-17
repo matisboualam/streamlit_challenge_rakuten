@@ -46,8 +46,6 @@ def clean_text(text):
     return text.lower()
 
 
-# Cache Word2Vec Model
-@st.cache_data
 def load_word2vec_model():
     return gensim.models.KeyedVectors.load('models/gensim/fasttext-wiki-news-subwords-300')
 
