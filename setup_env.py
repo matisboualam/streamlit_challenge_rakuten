@@ -32,9 +32,9 @@ def setup_environment():
     @st.cache_data
     def setup_nltk():
         st.write("Setting up NLTK resources...")
-        nltk.download('stopwords', download_dir='/usr/share/nltk_data')
-        nltk.download('wordnet', download_dir='/usr/share/nltk_data')
-        nltk.download('punkt', download_dir='/usr/share/nltk_data')
+        nltk.download('stopwords')
+        nltk.download('wordnet')
+        nltk.download('punkt')
         st.write("NLTK setup complete.")
 
     setup_nltk()
