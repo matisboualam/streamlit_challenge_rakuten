@@ -34,7 +34,7 @@ def setup_environment():
         st.write("Setting up NLTK resources...")
         nltk.download('stopwords')
         nltk.download('wordnet')
-        nltk.download('punkt')
+        nltk.download('punkt_tab')
         st.write("NLTK setup complete.")
 
     setup_nltk()
