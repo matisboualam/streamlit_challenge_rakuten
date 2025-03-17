@@ -2,8 +2,10 @@ import streamlit as st
 import pandas as pd
 import random
 import os 
-from models import Model
+from setup_env import setup_environment
+setup_environment()
 
+from model import Model
 
 print("Current working directory:", os.getcwd())
 print("Files in the current directory:", os.listdir(os.getcwd()))
