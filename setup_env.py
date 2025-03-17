@@ -28,8 +28,6 @@ def setup_environment():
     print("Pulling latest data from DVC...")
     subprocess.run(['dvc', 'pull'])
 
-    # Setup NLTK resources
-    @st.cache_data
     def setup_nltk():
         print("Setting up NLTK resources...")
         nltk.download('stopwords')

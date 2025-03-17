@@ -17,8 +17,6 @@ from model import Model
 print("Current working directory:", os.getcwd())
 print("Files in the current directory:", os.listdir(os.getcwd()))
 
-
-@st.cache_data
 def load_dataset():
     return pd.read_csv('data/dataset.csv')
 
