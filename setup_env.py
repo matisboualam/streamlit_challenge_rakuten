@@ -4,16 +4,16 @@ import nltk
 
 def setup_environment():
     # Retrieve access key ID from Streamlit secrets
-    st.write("Retrieving access key ID...")
+    print("Retrieving access key ID...")
     access_key_id = st.secrets["dvc"]["access_id"]
     print(f"Access Key ID: {access_key_id}")
 
     # List DVC remotes
-    st.write("Listing DVC remotes...")
+    print("Listing DVC remotes...")
     subprocess.run(['dvc', 'remote', 'list'])
 
     # Modify DVC remote settings locally
-    st.write("Modifying DVC remote settings...")
+    print("Modifying DVC remote settings...")
     subprocess.run([
         'dvc', 'remote', 'modify', 'origin', '--local', 
         'access_key_id', f'{access_key_id}'
@@ -25,20 +25,20 @@ def setup_environment():
     ])
 
     # Pull latest data from DVC
-    st.write("Pulling latest data from DVC...")
+    print("Pulling latest data from DVC...")
     subprocess.run(['dvc', 'pull'])
 
     # Setup NLTK resources
     @st.cache_data
     def setup_nltk():
-        st.write("Setting up NLTK resources...")
+        print("Setting up NLTK resources...")
         nltk.download('stopwords')
         nltk.download('wordnet')
         nltk.download('punkt_tab')
-        st.write("NLTK setup complete.")
+        print("NLTK setup complete.")
 
     setup_nltk()
-    st.write("Environment setup complete.")
+    print("Environment setup complete.")
 
 # Execute the function
 setup_environment()
